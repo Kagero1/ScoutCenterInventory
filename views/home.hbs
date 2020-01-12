@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{>head}}
+
+    <script src="../js/home.js"></script>
+    <script src="../js/homee.js"></script>
+    <script src="../js/global.js"></script>
+    <link href="css/global.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+    {{#if troopNo}}
+        {{#if type}}
+            {{> adminNav}}
+        {{else}}
+            {{> nav}}
+        {{/if}}
+    {{else}}
+    {{/if}}
+
+    <div class="content" style="text-align: center;">
+        {{#if troopNo}}
+        {{#if type}}
+            <h1>Welcome Admin!</h1><br/>
+            <h2>You can update the inventory list by uploading a .csv file below.</h2><br/>
+            {{!-- Uploader Box --}}
+            <div class="input_container">
+            <form class="box col-xl-8" method="post" action="" enctype="multipart/form-data">
+                <div class="box_input">
+                    <img class="image_upload" src="../assets/upload.png" alt="picture failed to load" style="width:128px;"><br><br>
+                    <input class="box_file" type="file" name="files[]" id="file" accept=".csv" multiple />
+                    <label for="file"><strong>Click to choose a file</strong><span class="box_dragndrop"> or drag it here</span>.</label>
+                </div>
+                <div class="box_uploading">Uploading&hellip;</div>
+                <div class="box_success">Done Uploading!</div>
+                <div class="box_error">Error! <span>Only .csv files are allowed</span>"."
+                <a href="/home"style="font-size:18px;" class="box_redirect" role="button">Try Again?</a></div>
+            </form>
+            <div id="uploadData" class="col-xl-4">
+                    <div id="card-upload">
+                        <div class="card-title" id="uploadTitle">Uploaded Files</div>
+                        <div id="uploadedFiles"></div>   
+                    </div>
+                    <button type="button" id="uploadBtn" class="button">UPLOAD</button>
+            </div>
+            </div>
+            {{!-- End of Uploader Box --}}
+            
+        {{else}}
+            <h1>Welcome Troop {{troopNo}}!</h1><br/>
+            <h3>To start using the website, you can click on other tabs (other than home) on the Navigation Bar above ^^^^</h3>
+        {{/if}}
+    {{else}}
+        <h1>Welcome Troop {{troopNo}}!</h1><br/>
+        <h3>To start using the website, you can click on other tabs (other than home) on the Navigation Bar above ^^^^</h3>
+    {{/if}}
+    {{>footer}}
+</body>
+</html>

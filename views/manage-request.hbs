@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{>head}}
+    
+    <script src="../js/home.js"></script>
+    <script src="../js/manage-request.js"></script>
+    <script src="../js/global.js"></script>
+    <link href="css/global.css" type="text/css" rel="stylesheet">
+
+</head>
+<body>
+    {{#if troopNo}}
+        {{#if type}}
+            {{> adminNav}}
+        {{else}}
+            {{> nav}}
+        {{/if}}
+    {{else}}
+    {{/if}}
+
+    <div class="container" id="WAT">
+            <h1> Request Status </h1>
+        <table id="manageRequest" class="datatable display table table-striped table-bordered" style="margin:20px; margin-left:0px; !important width:100%" data-toggle="table" data-search="true" style="padding:25px; color: black; border: 1px solid black; width: 100%"
+        data-toggle="table" data-search="true">
+            {{!-- <thead>
+                <tr style="background-color:#d3d3d3">
+                    <th>Item name</th>
+                    <th>Category</th>
+                    <th>Date Borrowed</th>
+                    <th>Date Return</th>
+                    <th>Requested Quantity</th>
+                    <th>Reason for request</th>
+                    <th>Approval Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each header}}
+                    <tr>
+                        <td>Wooden pole</td>
+                        <td>wood</td>
+                        <td>09-18-2019</td>
+                        <td>09-24-2019</td>
+                        <td>15</td>
+                        <td>"Input reason here."</td>
+                        <td><span class="badge badge-success" style="background-color: green !important;">Approved</span></td>
+                    </tr>
+                    <tr>
+                        <td>Cotton</td>
+                        <td>First Aid</td>
+                        <td>08-30-2019</td>
+                        <td>09-01-2019</td>
+                        <td>20</td>
+                        <td>"Firestarters"</td>
+                        <td><span class="badge badge-warning" style="background-color: orange !important;">Pending</span></td>
+                    </tr>
+                    <tr>
+                        <td>Lockpick</td>
+                        <td>Miscellaneous</td>
+                        <td>09-30-2019</td>
+                        <td>10-10-2019</td>
+                        <td>5</td>
+                        <td>"Lockpicking Seminar"</td>
+                        <td><span class="badge badge-danger" style="background-color: red !important;">Rejected</span></td>
+                    </tr>
+            </tbody> --}}
+        </table>
+    </div>
+    {{>footer}}
+</body>
+</html>

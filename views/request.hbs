@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{>head}}
+    
+    <script src="../js/home.js"></script>
+    <script src="../js/request.js"></script>
+    <script src="../js/global.js"></script>
+    <link href="css/global.css" type="text/css" rel="stylesheet">
+    <link href="css/request.css" type="text/css" rel="stylesheet">
+<head>
+<body>
+    {{#if troopNo}}
+        {{#if type}}
+            {{> adminNav}}
+        {{else}}
+            {{> nav}}
+        {{/if}}
+    {{else}}
+        {{> nav}}
+    {{/if}}
+
+    <div class="container" id="WAT">
+        <h1> Request Items </h1>
+        <form action="/requesting" method="POST">
+            <div>
+                <h2>Item Borrowing System</h2><br/>
+                <div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<span class="form-label">Item Name</span>
+										<input class="form-control" type="text" placeholder="City or airport">
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<span class="form-label">Flyning to</span>
+										<input class="form-control" type="text" placeholder="City or airport">
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-3">
+									<div class="form-group">
+										<span class="form-label">Departing</span>
+										<input class="form-control" type="date" required>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<span class="form-label">Returning</span>
+										<input class="form-control" type="date" required>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-3">
+									<div class="form-group">
+										<span class="form-label">Travel class</span>
+										<select class="form-control">
+											<option>Economy class</option>
+											<option>Business class</option>
+											<option>First class</option>
+										</select>
+										<span class="select-arrow"></span>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-btn">
+										<button class="submit-btn">Show flights</button>
+									</div>
+								</div>
+							</div>
+            </div>
+        </form>
+    </div>
+    {{>footer}}
+</body>
+</html>

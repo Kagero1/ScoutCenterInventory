@@ -1,0 +1,14 @@
+input{
+    position: relative !important;
+    border-color: navy !important;
+    border-radius: 10px !important;
+    opacity: 20;
+    display: block;
+    text-indent: 8px;
+}
+
+label{
+    position: relative !important;
+    display: block;
+
+}

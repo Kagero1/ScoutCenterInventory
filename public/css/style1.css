@@ -1,0 +1,108 @@
+body {
+    background-image: linear-gradient(#add8e6, blue);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height:100%;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    align-items: center;
+    vertical-align: middle;
+}
+
+.main-section{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    height: 100%;
+}
+
+.modal-dialog{
+    float: right;
+    margin: 0% 10%;
+    height: auto;
+    margin-top: 60px;
+}
+.modal-content {
+    background-image: linear-gradient(rgb(41, 41, 255), #0922af);
+    padding: 0 18px;
+    border-radius: 10px;
+    height: 410px;
+    width: 400px;
+    opacity: 1.0;
+    box-shadow: 0px 10px 25px -2px #0e140ca8;
+    margin-top: 40px;
+}
+
+.tagline {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.tagline img {
+    width: 80%;
+}
+
+.user-img img{
+    height: 180px;
+    width: 180px;
+    margin-top: -120px;
+} 
+
+.form-group{
+    margin-top: 0px;
+    margin-bottom: 15px;
+}
+
+.form-group input{
+    height: 42px; 
+    border-radius: 5px;
+    border: 0;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.form-input{
+    margin-top: -350px;
+}
+
+label{
+    color: white;
+    font-size:20px;
+}
+
+button{
+    margin-top: 10px;
+    width: 120px;
+}
+
+#btn-login.btn.btn-success{
+    border-radius: 25px;
+    width: 150px;
+}
+
+.tagline {
+    height: 750px;
+    width: 750px;
+}
+
+@media only screen and (max-width: 1060px) {
+    .tagline {
+        display: none;
+    }
+
+    body {
+        justify-content: center;
+    }
+}
