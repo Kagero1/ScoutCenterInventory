@@ -1,4 +1,5 @@
 const itemDB = require("../models/inventory.js");
+const requestDB = require("../models/request.js");
 
 function UploadItems(req, res) {
     let inventory = req.body.items;
@@ -37,10 +38,45 @@ function RetrieveAll(req, res){
 }
 
 function UpdateData(req, res){
-    
+    var troopNumber = req.session.username;
+    let error;
+    var item = req.body.item;
+    var items = {};
+    items.currentQty = item.currentQty;
+    var key = req.body.name;
+
+    itemDB.Update(key, items, (err)=>{
+        if(err){
+            error = err
+        }
+    });
+
+    var request = {};
+    request.troopNumber = troopNumber;
+    request.itemName = key;
+    request.category = item.category;
+    request.quantity = item.borrowQty;
+    request.reason = item.reason;
+    request.dateBorrow = item.dateBorrow;
+    request.dateReturn = "";
+    request.status = "Pending";
+
+    requestDB.CreateRequesting(request, (err)=>{
+        if(err){
+            error = err
+        }
+    });
+
+    if(error){
+        res.send("FAIL");
+        console.log(error);
+    }else{
+        res.send("OK");
+    }
 }
 
 module.exports = {
     UploadItems,
-    RetrieveAll
+    RetrieveAll,
+    UpdateData
 }

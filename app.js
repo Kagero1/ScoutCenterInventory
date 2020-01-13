@@ -33,12 +33,13 @@ app.use(bparser.urlencoded({limit: "50mb", extended: true}));
 //Controllers
 const userController = require(__dirname + "/controllers/user.js");
 const inventoryController = require(__dirname + "/controllers/inventory.js");
+const requestController = require (__dirname + "/controllers/request.js");
 
 //Routes
 //Post
 app.post("/login", userController.authenticate);
 app.post("/upload", inventoryController.UploadItems);
-app.post("/borrow", )
+app.post("/borrow", inventoryController.UpdateData);
 
 //Get
 app.get("/", (req, res)=>{
@@ -56,12 +57,13 @@ app.get("/logout", (req, res)=>{
     req.session.destroy();
     res.redirect("/");
 });
-app.get("/requestItems", function(req, res){
-    res.render("request.hbs", {
-        troopNo : req.session.username,
-        type : req.session.admin
-    })
-})
+app.get("/requestStatus", requestController.RetrieveAllTroop);
+// app.get("/requestItems", function(req, res){
+//     res.render("request.hbs", {
+//         troopNo : req.session.username,
+//         type : req.session.admin
+//     })
+// })
 app.get('*', function(req, res){
     res.render("404.hbs");
 });
