@@ -38,6 +38,7 @@ function RetrieveOne(item, callback){
 
 function RetrieveAll(callback){
     database.ref("items/").once("value").then(function(snapshot){
+        console.log(snapshot.val());
         callback(snapshot.val());
     });
 }

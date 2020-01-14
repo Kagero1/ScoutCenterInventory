@@ -9,6 +9,7 @@ function CreateRequesting(request, callback) {
     database.ref('requests/' + id).set({
         "troop" : troopNumber,
         "itemName" : request.itemName,
+        "category" : request.category,
         "quantity" : request.quantity,
         "reason" : request.reason,
         "dateBorrow" : request.dateBorrow,
@@ -19,16 +20,24 @@ function CreateRequesting(request, callback) {
     });
 }
 
-function RetrieveOne(request, callback){
-    var requests;
+function RetrieveTroop(request, callback){
     database.ref("requests/").once('value').then(function(snapshot){
-        snapshot.forEach((child) =>{
-            if(child.val().troop == request){
-                requests = child.val();
-                callback(requests);
+        var requests = snapshot.val();
+        var results = {};
+
+        if(request){
+            console.log(request);
+            for(let re in requests){
+                console.log("Request: " + re);
+                console.log("Troop Request" + requests[re].troop)
+                if(requests[re].troop == request){
+                    results[re] = requests[re];
+                }
             }
-        })
-        callback(null);
+            callback(results);
+        }else{
+            callback(null);
+        }
     });
 }
 
@@ -49,5 +58,6 @@ function Update(requestId, newData, callback){
 module.exports = {
     CreateRequesting,
     Update,
-    RetrieveOne
+    RetrieveTroop,
+    RetrieveAll
 }

@@ -48,6 +48,41 @@ input[type=date]{
     display: inline-flex;
 }
 
+input[type=text]{
+    position: relative !important;
+    color: black;
+    border-radius: 10px !important;
+    opacity: 20;
+    padding: 3px;
+    width: fit-content !important;
+    display: inline-flex;
+}
+
+input[type=datetime-local]{
+    position: relative !important;
+    color: black;
+    border-radius: 10px !important;
+    opacity: 20;
+    padding: 3px;
+    width: fit-content !important;
+    display: inline-flex;
+}
+
+.badge-danger{
+    background-color: #d9534f !important;
+    color: #000 !important;
+}
+
+.badge-success{
+    background-color: #5cb85c !important;
+    color: #000 !important;
+}
+
+.badge-warning{
+    background-color: #f0ad4e !important;
+    color: #000 !important;
+}
+  
 form{
     opacity: 50;
 }
