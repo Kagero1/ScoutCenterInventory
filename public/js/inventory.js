@@ -61,63 +61,67 @@ $(document).ready(() => {
             && date.getDate() > 0 
             && date.getMonth() + 1 > 0 
             && date.getFullYear() > 0
-            && date > new Date(newDate + newTime)
             && $("#reasonField").val().replace(/\s/g,'') != ""){
-            console.log("Quantity: " + $("#qtyField").val() 
-            + "\nYear: " + date.getFullYear()
-            + "\nMonth: " + date.getMonth() + 1
-            + "\nDay: " + date.getDate());
-
-            $(".editError").remove();
             
-            if($("#qtyField").val() > 0 && $("#qtyField").val() <= $("#currentField").val()){
-                var item={}
+            if(date > new Date(newDate + newTime)){
+                $(".editError").remove();
+                if($("#qtyField").val() > 0 && $("#qtyField").val() <= $("#currentField").val()){
+                    var item={}
 
-                item.category = $("#categoryField").val();
-                item.currentQty = (parseInt($("#currentField").val()) - parseInt($("#qtyField").val())).toString();
-                item.totQty = $("#totQty").val();
-                item.borrowQty = parseInt($("#qtyField").val()).toString();
-                item.dateBorrow = newDate + newTime;
-                item.reason = $("#reasonField").val();
-                item.uname = id;
-                console.log("Item." + troopNo);
-                item.troopNo = troopNo;
+                    item.category = $("#categoryField").val();
+                    item.currentQty = (parseInt($("#currentField").val()) - parseInt($("#qtyField").val())).toString();
+                    item.totQty = $("#totQty").val();
+                    item.borrowQty = parseInt($("#qtyField").val()).toString();
+                    item.dateBorrow = newDate + newTime;
+                    item.reason = $("#reasonField").val();
+                    item.uname = id;
+                    console.log("Item." + troopNo);
+                    item.troopNo = troopNo;
 
-                $.ajax({
-                    url: "borrow",
-                    method: "POST",
-                    data:{
-                        item : item,
-                        name : $("#nameField").val()
-                    },
-                    success: function(result){
-                        if(result == "OK"){
-                            window.location = "/inventory"
-                        }else{
-                            if($(".editError").length == 0){
-                                $(".errorMessage").append("<label class='editError' style='color: red;'>Something went wrong while procesing your request. Please Try Again</label>");
+                    $.ajax({
+                        url: "borrow",
+                        method: "POST",
+                        data:{
+                            item : item,
+                            name : $("#nameField").val()
+                        },
+                        success: function(result){
+                            if(result == "OK"){
+                                window.location = "/inventory"
                             }else{
-                                $(".editError").remove();
-                                $(".errorMessage").append("<label class='editError' style='color: red;'>Something went wrong while procesing your request. Please Try Again</label>");
+                                if($(".editError").length == 0){
+                                    $(".errorMessage").append("<label class='editError' style='color: red;'>Something went wrong while procesing your request. Please Try Again</label>");
+                                }else{
+                                    $(".editError").remove();
+                                    $(".errorMessage").append("<label class='editError' style='color: red;'>Something went wrong while procesing your request. Please Try Again</label>");
+                                }
                             }
                         }
+                    })
+                }else{
+                    if($(".editError").length == 0){
+                        $(".errorMessage").append("<label class='editError' style='color: red;'>The quantity you requested exceeded the current quantity.</label>");
+                    }else{
+                        $(".editError").remove();
+                        $(".errorMessage").append("<label class='editError' style='color: red;'>The Quantity you requested exceeded the current quantity.</label>");
                     }
-                })
+                }
             }else{
                 if($(".editError").length == 0){
-                    $(".errorMessage").append("<label class='editError' style='color: red;'>The quantity you requested exceeded the current quantity.</label>");
+                    $(".errorMessage").append("<label class='editError' style='color: red;'>Please enter a valid time and date.</label>");
                 }else{
                     $(".editError").remove();
-                    $(".errorMessage").append("<label class='editError' style='color: red;'>The Quantity you requested exceeded the current quantity.</label>");
+                    $(".errorMessage").append("<label class='editError' style='color: red;'>Please input a date and time later than " + date + "</label>");
                 }
             }
             
+            
         }else{
             if($(".editError").length == 0){
-                $(".errorMessage").append("<label class='editError' style='color: red;'>Please input valid values.</label>");
+                $(".errorMessage").append("<label class='editError' style='color: red;'>Fields Cannot be Empty</label>");
             }else{
                 $(".editError").remove();
-                $(".errorMessage").append("<label class='editError' style='color: red;'>Please double check your inputs.</label>");
+                $(".errorMessage").append("<label class='editError' style='color: red;'>Fields Cannot be Empty</label>");
             }
         }
         //End of Request
