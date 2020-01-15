@@ -32,6 +32,7 @@
                     <th>Requested Quantity</th>
                     <th>Reason for request</th>
                     <th>Approval Status</th>
+                    <th>Options</th>
                 </tr>
             </thead>
             <tbody>
@@ -43,7 +44,8 @@
                         <td>{{dateReturn}}</td>
                         <td>{{quantity}}</td>
                         <td>{{reason}}</td>
-                        <td style="text-align: center;"><span class="badge">{{status}}</span></td>
+                        <td style="text-align: center;"><span data-id="{{@key}}">{{status}}</span></td>
+                        <td style="text-align: center;" id="option{{@key}}"></td>
                     </tr>
                 {{/each}} 
             </tbody>

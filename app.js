@@ -34,12 +34,15 @@ app.use(bparser.urlencoded({limit: "50mb", extended: true}));
 const userController = require(__dirname + "/controllers/user.js");
 const inventoryController = require(__dirname + "/controllers/inventory.js");
 const requestController = require (__dirname + "/controllers/request.js");
+const manageController = require(__dirname + "/controllers/manage.js");
 
 //Routes
 //Post
 app.post("/login", userController.authenticate);
 app.post("/upload", inventoryController.UploadItems);
 app.post("/borrow", inventoryController.UpdateData);
+app.post("/return", requestController.UpdateReturn);
+app.post("/updateStatus", manageController.UpdateStatus);
 
 //Get
 app.get("/", (req, res)=>{
@@ -58,6 +61,7 @@ app.get("/logout", (req, res)=>{
     res.redirect("/");
 });
 app.get("/requestStatus", requestController.RetrieveAllTroop);
+app.get("/manageRequest", manageController.RetrieveAll);
 // app.get("/requestItems", function(req, res){
 //     res.render("request.hbs", {
 //         troopNo : req.session.username,

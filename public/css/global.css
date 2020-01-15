@@ -82,6 +82,19 @@ input[type=datetime-local]{
     background-color: #f0ad4e !important;
     color: #000 !important;
 }
+
+.badge-return{
+    background-color: #55acf3 !important;
+    color: #000 !important;
+}
+
+.btn{
+    border-radius: 7px;
+}
+
+tr td{
+    vertical-align: middle;
+}
   
 form{
     opacity: 50;

@@ -12,6 +12,25 @@ function RetrieveAllTroop(req, res){
     })
 }
 
+function UpdateReturn(req, res){
+    var date = req.body.dateReturn;
+    var id = req.body.id;
+
+    var request = {}
+    request.dateReturn = date;
+    request.status = req.body.status;
+
+    requestDB.Update(id, request, (err)=>{
+        if(err){
+            console.log(err);
+            res.send("FAIL");
+        }else{
+            res.send("OK");
+        }
+    })
+}
+
 module.exports={
-    RetrieveAllTroop
+    RetrieveAllTroop,
+    UpdateReturn
 }
