@@ -1,4 +1,5 @@
 var idSelected;
+var curr, name;
 function returnItem(){
     var today = new Date().toLocaleString("en-PH", {timeZone: "Asia/Manila"}).split(",");
     var datearray = today[0].split("/");
@@ -18,6 +19,8 @@ function returnItem(){
         url:"return",
         method:"POST",
         data:{
+            name : name,
+            currentQty : curr,
             id : idSelected,
             dateReturn: newDate + newTime,
             status: "Returned"
@@ -55,6 +58,9 @@ $(document).ready(()=>{
 
     $(".return").click(function(){
         idSelected = this.getAttribute("id");
+        curr = (parseInt($("#currentField" + idSelected).val()) + parseInt($("#borrowField" + idSelected).val())).toString();
+        console.log(curr);
+        name = $("#nameField" + idSelected).val();
         returnItem();
     })
 

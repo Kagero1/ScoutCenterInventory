@@ -55,6 +55,7 @@ function UpdateData(req, res){
     request.troopNumber = troopNumber;
     request.itemName = key;
     request.category = item.category;
+    request.currentQty = item.currentQty;
     request.quantity = item.borrowQty;
     request.reason = item.reason;
     request.dateBorrow = item.dateBorrow;

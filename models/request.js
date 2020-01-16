@@ -10,6 +10,7 @@ function CreateRequesting(request, callback) {
         "troop" : troopNumber,
         "itemName" : request.itemName,
         "category" : request.category,
+        "currentQty" : request.currentQty,
         "quantity" : request.quantity,
         "reason" : request.reason,
         "dateBorrow" : request.dateBorrow,

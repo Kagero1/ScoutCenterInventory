@@ -46,6 +46,9 @@
                         <td>{{reason}}</td>
                         <td style="text-align: center;"><span data-id="{{@key}}">{{status}}</span></td>
                         <td style="text-align: center;" id="option{{@key}}"></td>
+                        <input type="hidden" id="borrowField{{@key}}" value="{{quantity}}">
+                        <input type="hidden" id="currentField{{@key}}" value="{{currentQty}}">
+                        <input type="hidden" id="nameField{{@key}}" value="{{itemName}}">
                     </tr>
                 {{/each}} 
             </tbody>
