@@ -59,7 +59,6 @@ $(document).ready(()=>{
     $(".return").click(function(){
         idSelected = this.getAttribute("id");
         curr = (parseInt($("#currentField" + idSelected).val()) + parseInt($("#borrowField" + idSelected).val())).toString();
-        console.log(curr);
         name = $("#nameField" + idSelected).val();
         returnItem();
     })

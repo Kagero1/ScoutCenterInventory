@@ -1,4 +1,5 @@
 const requestDB = require("../models/request.js");
+const itemDB = require("../models/inventory.js");
 
 function RetrieveAll(req, res){
     requestDB.RetrieveAll((requests) =>{
@@ -11,6 +12,8 @@ function RetrieveAll(req, res){
 }
 
 function UpdateStatus(req, res){
+    var flag;
+
     var status = req.body.status;
     var id = req.body.id;
 
@@ -18,13 +21,25 @@ function UpdateStatus(req, res){
     request.status = status;
 
     requestDB.Update(id, request, (err)=>{
-        if(err){
-            console.log(err);
-            res.send("FAIL");
-        }else{
-            res.send("OK");
-        }
-    })
+        if(err)
+            flag = err;
+    });
+
+    var item = {};
+    var uname = req.body.name;
+    item.currentQty = req.body.currentQty;
+
+    itemDB.Update(uname, item, (err)=>{
+        if(err)
+            flag = err;
+    });
+
+    if(flag){
+        console.log(err);
+        res.send("FAIL");
+    }else{
+        res.send("OK");
+    }
 }
 
 module.exports = {

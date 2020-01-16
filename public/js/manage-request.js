@@ -1,10 +1,13 @@
 var idSelected;
-var flag
+var flag;
+var curr, name;
 function updateStatus(){
     $.ajax({
         url:"updateStatus",
         method:"POST",
         data:{
+            name : name,
+            currentQty : curr,
             id : idSelected,
             status: flag
         },
@@ -51,6 +54,8 @@ $(document).ready(()=>{
 
     $(".statusReject").click(function(){
         idSelected = this.getAttribute("id");
+        curr = (parseInt($("#currentField" + idSelected).val()) + parseInt($("#borrowField" + idSelected).val())).toString();
+        name = $("#nameField" + idSelected).val();
         flag = "Rejected";
         updateStatus();
     });
