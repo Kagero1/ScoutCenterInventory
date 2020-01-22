@@ -43,7 +43,11 @@ $(document).ready(() => {
     }
 
     var ttoday = newdate + "T" + newTime;
-    document.getElementById("dateField").setAttribute('min', ttoday);
+    var elements = document.getElementsByClassName("date");
+    for(var i=0; i<elements.length; i++) {
+        elements[i].setAttribute('min', ttoday);
+    }
+    
 
     console.log(ttoday);
     //End of Date Fixes
@@ -52,28 +56,34 @@ $(document).ready(() => {
     //This also displays errors in the front end adequately but NOT YET appropriately (NEEDS FIXING) [i.e. Tell users what are the mistakes]
     $(".btn-request").on('click', function(){
         var id = $(this).attr("data-id");
-        var date = new Date( $("#dateField").val());
+        var dateArray = $("#dateField" + id).val().split("T");
+        console.log(dateArray)
+        var day = dateArray[0].split("-");
+        console.log(day)
+        var dat = day[1] + "/" + day[2] + "/" + day[0] + " ";
+        var time = dateArray[1];
+        var date = new Date(dat + time);
         console.log(date);
-
+        console.log(newDate + newTime);
         console.log(new Date(newDate + newTime));
     
-        if($("#qtyField").val() > 0 
+        if($("#qtyField" + id).val() > 0 
             && date.getDate() > 0 
             && date.getMonth() + 1 > 0 
             && date.getFullYear() > 0
-            && $("#reasonField").val().replace(/\s/g,'') != ""){
+            && $("#reasonField" + id).val().replace(/\s/g,'') != ""){
             
             if(date > new Date(newDate + newTime)){
                 $(".editError").remove();
-                if($("#qtyField").val() > 0 && $("#qtyField").val() <= $("#currentField").val()){
+                if($("#qtyField" + id).val() > 0 && $("#qtyField" + id).val() <= $("#currentField" + id).val()){
                     var item={}
 
-                    item.category = $("#categoryField").val();
-                    item.currentQty = (parseInt($("#currentField").val()) - parseInt($("#qtyField").val())).toString();
-                    item.totQty = $("#totQty").val();
-                    item.borrowQty = parseInt($("#qtyField").val()).toString();
+                    item.category = $("#categoryField" + id).val();
+                    item.currentQty = (parseInt($("#currentField" + id).val()) - parseInt($("#qtyField" + id).val())).toString();
+                    item.totQty = $("#totQty" + id).val();
+                    item.borrowQty = parseInt($("#qtyField" + id).val()).toString();
                     item.dateBorrow = newDate + newTime;
-                    item.reason = $("#reasonField").val();
+                    item.reason = $("#reasonField" + id).val();
                     item.uname = id;
                     console.log("Item." + troopNo);
                     item.troopNo = troopNo;
@@ -83,35 +93,35 @@ $(document).ready(() => {
                         method: "POST",
                         data:{
                             item : item,
-                            name : $("#nameField").val()
+                            name : $("#nameField" + id).val()
                         },
                         success: function(result){
                             if(result == "OK"){
                                 window.location = "/inventory"
                             }else{
-                                if($(".editError").length == 0){
-                                    $(".errorMessage").append("<label class='editError' style='color: red;'>Something went wrong while procesing your request. Please Try Again</label>");
+                                if($(".editError" + id).length == 0){
+                                    $(".errorMessage" + id).append("<label class='editError'" + id + " style='color: red;'>Something went wrong while procesing your request. Please Try Again</label>");
                                 }else{
-                                    $(".editError").remove();
-                                    $(".errorMessage").append("<label class='editError' style='color: red;'>Something went wrong while procesing your request. Please Try Again</label>");
+                                    $(".editError" + id).remove();
+                                    $(".errorMessage" + id).append("<label class='editError'" + id + " style='color: red;'>Something went wrong while procesing your request. Please Try Again</label>");
                                 }
                             }
                         }
                     })
                 }else{
-                    if($(".editError").length == 0){
-                        $(".errorMessage").append("<label class='editError' style='color: red;'>The quantity you requested exceeded the current quantity.</label>");
+                    if($(".editError" + id).length == 0){
+                        $(".errorMessage" + id).append("<label class='editError'" + id + " style='color: red;'>The quantity you requested exceeded the current quantity.</label>");
                     }else{
-                        $(".editError").remove();
-                        $(".errorMessage").append("<label class='editError' style='color: red;'>The Quantity you requested exceeded the current quantity.</label>");
+                        $(".editError" + id).remove();
+                        $(".errorMessage" + id).append("<label class='editError'" + id + " style='color: red;'>The Quantity you requested exceeded the current quantity.</label>");
                     }
                 }
             }else{
-                if($(".editError").length == 0){
-                    $(".errorMessage").append("<label class='editError' style='color: red;'>Please enter a valid time and date.</label>");
+                if($(".editError" + id).length == 0){
+                    $(".errorMessage" + id).append("<label class='editError'" + id + " style='color: red;'>Please enter a valid time and date.</label>");
                 }else{
-                    $(".editError").remove();
-                    $(".errorMessage").append("<label class='editError' style='color: red;'>Please input a date and time later than " + date + "</label>");
+                    $(".editError" + id).remove();
+                    $(".errorMessage" + id).append("<label class='editError'" + id + " style='color: red;'>Please input a date and time later than " + date + "</label>");
                 }
             }
             

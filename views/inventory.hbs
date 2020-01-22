@@ -10,6 +10,7 @@
 </head>
 <body>
     {{#if troopNo}}
+    <input type="hidden" id="troopField" value="{{troopNo}}">
         {{#if type}}
             {{> adminNav}}
         {{else}}
@@ -17,7 +18,7 @@
         {{/if}}
     {{else}}
     {{/if}}
-    <input type="hidden" id="troopField" value="{{troopNo}}">
+    
     <div class="container" id="WAT">
             <h1> Inventory List </h1>
         <table id="inventory" class="datatable display table table-striped table-bordered" data-toggle="table" data-search="true">
@@ -53,27 +54,27 @@
                             <div class="modal-body">
                                     <div class="row">
                                         <span class="form-label">Quantity:</span>&emsp;
-                                        <input id="qtyField"  type="number" placeholder="Quantity">
+                                        <input id="qtyField{{uname}}" type="number" placeholder="Quantity">
                                     </div>
                                     <br/>
                                     <br/>
                                     <div class="row">
                                         <span class="form-label">Reason:</span>&emsp;
-                                        <input id="reasonField" type="text" placeholder="Input Valid Reason">
+                                        <input id="reasonField{{uname}}" type="text" placeholder="Input Valid Reason">
                                     </div>
                                     <br/>
                                     <br/>
                                     <div class="row">
                                         <span class="form-label">Borrow Date:</span>&emsp;
-                                        <input type="datetime-local" id="dateField">
+                                        <input type="datetime-local" id="dateField{{uname}}" class="date">
                                     </div>
-                                    <input type="hidden" id="nameField" value="{{@key}}">
-                                    <input type="hidden" id="categoryField" value="{{category}}">
-                                    <input type="hidden" id="currentField" value="{{currentQty}}">
-                                    <input type="hidden" id="totField" value="{{totQty}}">
+                                    <input type="hidden" id="nameField{{uname}}" value="{{@key}}">
+                                    <input type="hidden" id="categoryField{{uname}}" value="{{category}}">
+                                    <input type="hidden" id="currentField{{uname}}" value="{{currentQty}}">
+                                    <input type="hidden" id="totField{{uname}}" value="{{totQty}}">
                                     <br>
                                     <div class="row">
-                                        <div class="errorMessage">
+                                        <div class="errorMessage{{uname}}">
                                             <br>
                                         </div>
                                     </div>

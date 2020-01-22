@@ -1,6 +1,6 @@
 var idSelected;
 var flag;
-var curr, name;
+var curr = 0, name;
 function updateStatus(){
     $.ajax({
         url:"updateStatus",
